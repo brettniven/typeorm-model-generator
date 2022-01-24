@@ -427,9 +427,12 @@ export default class PostgresDriver extends AbstractDriver {
                     case "citext":
                     case "hstore":
                     case "geography":
-                    case "geometry":
                     case "ltree":
                         ret.sqlType = udtName;
+                        break;
+                    case "geometry":
+                        ret.sqlType = udtName;
+                        ret.tsType = "Geometry";
                         break;
                     default:
                         if (enumValues) {

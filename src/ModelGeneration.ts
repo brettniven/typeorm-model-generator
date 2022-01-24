@@ -99,6 +99,10 @@ function generateModels(
             console.error(error);
             formatted = withImportStatements;
         }
+
+        // Fix geojson import. Without this, the template asserts that it is an import of a local entity
+        formatted = formatted.replace(`"./Geojson"`, `"geojson"`);
+
         fs.writeFileSync(resultFilePath, formatted, {
             encoding: "utf-8",
             flag: "w",
